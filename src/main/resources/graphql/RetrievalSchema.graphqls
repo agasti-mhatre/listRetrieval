@@ -1,0 +1,14 @@
+type Query {
+    getLists(username: String!, firstItemIndex: Int!, numItems: Int!): ListDTO
+}
+
+type ListDTO {
+
+    lists: [ListPropertiesDTO]
+}
+
+type ListPropertiesDTO {
+
+    eatery: [String]
+    name: String
+}

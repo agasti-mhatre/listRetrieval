@@ -1,0 +1,24 @@
+spring:
+  application:
+  name: ListRetrieval
+
+  data:
+    mongodb:
+
+      uri: mongodb+srv://agasti_mhatre:I9YrxG7NSt2Mkbue@userdata.nexjn.mongodb.net/?retryWrites=true&w=majority&appName=UserData
+      database: UserData
+
+mongodbValues:
+
+  id: _id
+  lists: lists
+
+graphql:
+
+  servlet:
+    mapping: /graphql
+
+  tools:
+    schema-location-pattern:
+      - classpath:graphql/RetrievalSchema.graphqls
+      - classpath:graphql/MutationSchema.graphqls
