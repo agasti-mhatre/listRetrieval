@@ -1,3 +1,4 @@
 type Mutation {
     createList(username: String!, listName: String!): String
+    insertItems(username: String!): String
 }

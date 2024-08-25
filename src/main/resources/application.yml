@@ -20,5 +20,5 @@ graphql:
 
   tools:
     schema-location-pattern:
-      - classpath:graphql/RetrievalSchema.graphqls
       - classpath:graphql/MutationSchema.graphqls
+      - classpath:graphql/QuerySchema.graphqls

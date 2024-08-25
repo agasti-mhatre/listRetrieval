@@ -2,11 +2,9 @@ package recommender.recommenderBackend.listRetrieval;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
-import org.springframework.data.mongodb.core.MongoTemplate;
-import org.springframework.data.mongodb.core.query.Criteria;
-import org.springframework.data.mongodb.core.query.Query;
-import org.springframework.data.mongodb.core.query.Update;
 import org.springframework.stereotype.Service;
+
+import java.util.List;
 
 import recommender.recommenderBackend.listRetrieval.DTO.ListDTO;
 import recommender.recommenderBackend.listRetrieval.DTO.ListNameDTO;
@@ -17,9 +15,6 @@ public class ListRetrievalService {
   @Autowired
   ListsRepository listsRepository;
 
-  @Autowired
-  MongoTemplate mongoTemplate;
-
   @Value("${mongodbValues.id}")
   String id;
 
@@ -28,23 +23,24 @@ public class ListRetrievalService {
 
   public ListDTO getLists(String username, int firstItemIndex, int numItems) {
 
-    return listsRepository.getListsInRange(username, firstItemIndex, numItems);
+    return listsRepository.getLists(username, firstItemIndex, numItems);
   }
-
 
   public void createList(String username, String listName) {
 
     ListNameDTO newList = new ListNameDTO();
     newList.setName(listName);
-
-    Query query = new Query(Criteria.where(id).is(username));
-    Update update = new Update().push(lists, newList);
-    mongoTemplate.updateFirst(query, update, ListDTO.class);
+    listsRepository.insertList(username, newList);
   }
 
-  public boolean hasList(String username) {
+  public void insertItems(String username, String listName, List<String> listItems) {
 
-    return false;
+    listsRepository.insertItems(username, listName, listItems);
+  }
+
+  public boolean hasList(String username, String listName) {
+
+    return listsRepository.hasUser(username, listName);
   }
 
 }

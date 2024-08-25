@@ -26,13 +26,21 @@ public class ListsController {
   public String createList(@Argument String username,
                             @Argument String listName) {
 
-    if (listRetrievalService.hasList(username)) {
+    if (listRetrievalService.hasList(username, listName)) {
 
       return "List already exists";
     }
 
     listRetrievalService.createList(username, listName);
     return "List has been created";
+  }
+
+  @MutationMapping
+  public String insertItems() {
+
+
+
+    return "";
   }
 
 }
