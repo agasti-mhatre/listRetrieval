@@ -19,7 +19,7 @@ public interface ListsRepository extends MongoRepository<ListDTO, String> {
   void insertList(String username, ListNameDTO newList);
 
   @Query("{ '_id': ?0, 'lists.name': ?1 }")
-  @Update("{ '$push': { 'lists.eatery': { '$each': ?2 } } }")
+  @Update("{ '$push': { 'lists.$.eatery': { '$each': ?2 } } }")
   void insertItems(String username, String listName, List<String> listItems);
 
   @Query(value = "{ '_id' : ?0, 'lists.name' : ?1 }", exists = true)
