@@ -18,6 +18,10 @@ public interface ListsRepository extends MongoRepository<ListDTO, String> {
   @Update("{ '$push': { 'lists': ?1 } }")
   void insertList(String username, ListNameDTO newList);
 
+  @Query("{ '_id': ?0 }")
+  @Update("{ '$pull': { 'lists': { 'name': ?1 } } }")
+  void deleteList(String username, String listName);
+
   @Query("{ '_id': ?0, 'lists.name': ?1 }")
   @Update("{ '$push': { 'lists.$.eatery': { '$each': ?2 } } }")
   void insertItems(String username, String listName, List<String> listItems);

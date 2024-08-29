@@ -43,7 +43,15 @@ public class ListsController {
                             @Argument List<String> items) {
 
     listRetrievalService.insertItems(username, listName, items);
-    return "";
+    return "List items pushed";
+  }
+
+  @MutationMapping
+  public String deleteList(@Argument String username,
+                           @Argument String listName) {
+
+    listRetrievalService.deleteList(username, listName);
+    return "List deleted";
   }
 
 }

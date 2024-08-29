@@ -33,6 +33,11 @@ public class ListRetrievalService {
     listsRepository.insertList(username, newList);
   }
 
+  public void deleteList(String username, String listName) {
+
+    listsRepository.deleteList(username, listName);
+  }
+
   public void insertItems(String username, String listName, List<String> listItems) {
 
     listsRepository.insertItems(username, listName, listItems);
